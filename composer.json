@@ -1,0 +1,41 @@
+{
+    "name": "twobits-in/laravel-fast2sms-notification",
+    "description": "laravel notification implementation of fast2sms APIs.",
+    "type": "library",
+    "require": {
+ 	"php": ">=7.2",
+        "guzzlehttp/guzzle": "7.4.x-dev",
+        "illuminate/notifications": "8.x-dev",
+        "illuminate/support": "8.x-dev"
+    },
+    "require-dev": {
+        "mockery/mockery": "1.4.x-dev",
+        "phpunit/phpunit": "9.5.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationChannels\\Fast2sms\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NotificationChannels\\Fast2sms\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TwoBits Technologies Pvt. Ltd.",
+            "email": "dev@twobits.in"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
