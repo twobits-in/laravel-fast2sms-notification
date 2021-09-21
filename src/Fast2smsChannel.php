@@ -1,9 +1,8 @@
 <?php
 
-namespace NotificationChannels\Fast2sms;
+namespace TwoBitsIn\Fast2sms;
 
 use Illuminate\Notifications\Notification;
-use TwoBitsIn\Fast2sms\Exceptions\CouldNotSendNotification as ExceptionsCouldNotSendNotification;
 use TwoBitsIn\Fast2sms\Fast2smsClient;
 
 class Fast2smsChannel
@@ -20,25 +19,26 @@ class Fast2smsChannel
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
      *
-     * @throws \NotificationChannels\Fast2sms\Exceptions\CouldNotSendNotification
+     * @throws \TwoBitsIn\Fast2sms\Exceptions\CouldNotSendNotification
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $to = $notifiable->routeNotificationFor('jsksms', $notification)) {
+        if (! $to = $notifiable->routeNotificationFor('fast2sms', $notification)) {
             return;
         }
-
-        $message = $notification->toJsksms($notifiable);
-
-        if (is_string($message)) {
-            $message = new Fast2smsMessage($message);
+        $toArray = [];
+        if(is_array($to)){
+            $toArray = $to;
+        }
+        if(is_string($to)){
+            array_push($toArray,$to);
+        }
+        $content = $notification->toFast2sms($notifiable);
+        if(empty($toArray)){
+            array_push($toArray,$content['payload']['to']);
         }
 
-        if (mb_strlen($message->content) > $this->character_limit_count) {
-            throw ExceptionsCouldNotSendNotification::contentLengthLimitExceeded($this->character_limit_count);
-        }
-
-        return $this->jsksms->send(trim($message->content),$to);
+        return $this->Fast2smsClient->send($content['payload']['messageId'],$content['payload']['variable_values'],$toArray);
 
         
     }

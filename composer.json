@@ -14,12 +14,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\Fast2sms\\": "src"
+            "TwoBitsIn\\Fast2sms\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\Fast2sms\\Test\\": "tests"
+            "TwoBitsIn\\Fast2sms\\Test\\": "tests"
         }
     },
     "scripts": {

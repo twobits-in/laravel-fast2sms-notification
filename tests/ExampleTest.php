@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Fast2sms\Test;
+namespace TwoBitsIn\Fast2sms\Test;
 
 use PHPUnit\Framework\TestCase;
 

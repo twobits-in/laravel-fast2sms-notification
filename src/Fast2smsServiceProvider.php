@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Fast2sms;
+namespace TwoBitsIn\Fast2sms;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Notifications\ChannelManager;
@@ -28,7 +28,7 @@ class Fast2smsServiceProvider extends ServiceProvider
         });
 
         Notification::resolved(function (ChannelManager $service) {
-            $service->extend('Fast2sms', function ($app) {
+            $service->extend('fast2sms', function ($app) {
                 return new Fast2smsChannel($app[Fast2smsClient::class]);
             });
         });
